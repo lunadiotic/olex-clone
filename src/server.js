@@ -24,6 +24,16 @@ app.use(
   })
 )
 
+const db = require('./models')
+db.sequelize
+  .sync({ force: true })
+  .then(() => {
+    console.log(`database connected`)
+  })
+  .catch((err) => {
+    console.error(`database connection failed.`, err.message)
+  })
+
 app.get('/', (req, res) => {
   res.json({
     message: 'server is running...',
