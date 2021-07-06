@@ -27,10 +27,11 @@ app.use(
 const db = require('./models')
 const seed = require('./models/seeds')
 db.sequelize
-  .sync({ force: true })
+  // .sync({ force: true })
+  .sync()
   .then(() => {
-    seed.userSeed()
-    seed.categorySeed()
+    // seed.userSeed()
+    // seed.categorySeed()
     console.log(`database connected`)
   })
   .catch((err) => {
