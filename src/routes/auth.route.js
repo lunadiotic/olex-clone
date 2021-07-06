@@ -11,4 +11,5 @@ module.exports = (app) => {
   })
 
   app.post('/api/auth/register', middleware.isUserExist, controller.register)
+  app.post('/api/auth/login', controller.login)
 }
