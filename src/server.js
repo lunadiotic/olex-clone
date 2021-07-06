@@ -30,6 +30,7 @@ db.sequelize
   .sync({ force: true })
   .then(() => {
     seed.userSeed()
+    seed.categorySeed()
     console.log(`database connected`)
   })
   .catch((err) => {
