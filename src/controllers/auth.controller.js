@@ -1,5 +1,5 @@
 const config = require('../config/auth')
-const db = reqiure('../models')
+const db = require('../models')
 const User = db.user
 const bcrypt = require('bcryptjs')
 
@@ -13,7 +13,6 @@ exports.register = (req, res) => {
     .then((user) => {
       res.status(201).json({
         message: 'user was registered sucessfully!',
-        ...user,
       })
     })
     .catch((err) => {
