@@ -1,3 +1,4 @@
+const middleware = require('../middleware')
 const controller = require('../controllers/auth.controller')
 
 module.exports = (app) => {
@@ -9,5 +10,5 @@ module.exports = (app) => {
     next()
   })
 
-  app.post('/api/auth/register', controller.register)
+  app.post('/api/auth/register', middleware.isUserExist, controller.register)
 }
