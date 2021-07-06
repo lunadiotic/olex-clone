@@ -45,6 +45,7 @@ app.get('/', (req, res) => {
 })
 
 require('./routes/auth.route')(app)
+require('./routes/profile.route')(app)
 
 const PORT = process.env.APP_PORT || 5000
 app.listen(PORT, () => {
