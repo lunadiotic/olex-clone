@@ -111,3 +111,44 @@ exports.update = (req, res) => {
       })
     })
 }
+
+exports.delete = (req, res) => {
+  const id = req.params.id
+
+  Product.findByPk(id)
+    .then((result) => {
+      if (result.user_id != req.userId) {
+        res.status(401).json({
+          message: 'unauthorized data product',
+        })
+        return
+      }
+
+      Product.destroy({
+        where: {
+          id: id,
+        },
+      })
+        .then((num) => {
+          if (num == 1) {
+            res.status(200).json({
+              message: 'product deleted successfully',
+            })
+          } else {
+            res.status(400).json({
+              message: `cannot delete product with id ${id}`,
+            })
+          }
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: err.message,
+          })
+        })
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
+      })
+    })
+}

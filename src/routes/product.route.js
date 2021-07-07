@@ -14,4 +14,5 @@ module.exports = (app) => {
   app.post('/api/product', middleware.verifyToken, controller.create)
   app.get('/api/product/:id', middleware.verifyToken, controller.show)
   app.patch('/api/product/:id', middleware.verifyToken, controller.update)
+  app.delete('/api/product/:id', middleware.verifyToken, controller.delete)
 }
