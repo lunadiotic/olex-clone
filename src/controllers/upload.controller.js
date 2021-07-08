@@ -39,3 +39,45 @@ exports.upload = async (req, res) => {
     })
   }
 }
+
+exports.remove = (req, res) => {
+  const id = req.params.id
+
+  Image.findByPk(id)
+    .then((data) => {
+      fs.unlink(__basedir + `/storage/upload/${data.file}`, function (err) {
+        if (err) {
+          throw res.status(500).json({
+            message: 'delete image failed!',
+          })
+        }
+
+        Image.destroy({
+          where: {
+            id: id,
+          },
+        })
+          .then((num) => {
+            if (num == 1) {
+              res.status(200).json({
+                message: 'Image was deleted successfully!',
+              })
+            } else {
+              res.status(500).json({
+                message: `Cannot delete image with id=${id}.`,
+              })
+            }
+          })
+          .catch((err) => {
+            res.status(500).json({
+              message: err.message,
+            })
+          })
+      })
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
+      })
+    })
+}
