@@ -9,6 +9,10 @@ db.product.hasMany(db.image, {
   foreignKey: 'product_id',
 })
 
+db.product.belongsTo(db.user, {
+  foreignKey: 'user_id',
+})
+
 db.category.hasMany(db.product, {
   foreignKey: 'category_id',
 })
