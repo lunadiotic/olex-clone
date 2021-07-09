@@ -11,5 +11,5 @@ module.exports = (app) => {
   })
 
   app.post('/api/product/:id/upload', middleware.verifyToken, controller.upload)
-  app.post('/api/image/:id', middleware.verifyToken, controller.remove)
+  app.delete('/api/image/:id', middleware.verifyToken, controller.remove)
 }

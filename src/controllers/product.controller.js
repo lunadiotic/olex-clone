@@ -1,11 +1,13 @@
 const db = require('../models')
 const Product = db.product
+const Image = db.image
 
 exports.index = (req, res) => {
   Product.findAll({
     where: {
       user_id: req.userId,
     },
+    include: Image,
   })
     .then((result) => {
       res.status(200).json({
@@ -50,7 +52,9 @@ exports.create = (req, res) => {
 exports.show = (req, res) => {
   const id = req.params.id
 
-  Product.findByPk(id)
+  Product.findByPk(id, {
+    include: Image,
+  })
     .then((result) => {
       if (result.user_id != req.userId) {
         res.status(401).json({
