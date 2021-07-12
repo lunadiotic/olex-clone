@@ -4,6 +4,7 @@
   "description": "web service like classified ads",
   "main": "server.js",
   "scripts": {
+    "serve": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
