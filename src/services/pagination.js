@@ -7,7 +7,7 @@ const getPagination = (page, size) => {
 
 const getPagingData = (result, page, limit) => {
   const { count: totalItems, rows: data } = result
-  const currentPage = page ? +page + 1 : 0
+  const currentPage = page ? +page + 1 : 1
   const totalPages = Math.ceil(totalItems / limit)
 
   return { totalItems, data, totalPages, currentPage }
